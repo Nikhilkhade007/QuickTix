@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ConvexClientProvider } from "@/lib/providers/ConvexClientProvider";
+import Header from "@/components/Header";
+import SyncUserWithConvex from "@/lib/providers/SyncUserWithConvex";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +30,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased py-6 px-4`}
+      ><ConvexClientProvider>
+        <ClerkProvider>
+          <Header/>
+          <SyncUserWithConvex/>
+          <Toaster/>
+          {children}
+      </ClerkProvider>
+      </ConvexClientProvider>
+        
       </body>
     </html>
   );
