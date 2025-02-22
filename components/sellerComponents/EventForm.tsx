@@ -73,7 +73,7 @@ export default function EventForm({ mode, initialData }: EventFormProps) {
   const generateUploadUrl = useMutation(api.storage.generateUploadUrl);
   const updateEventImage = useMutation(api.storage.updateEventImage);
   const deleteImage = useMutation(api.storage.deleteImage);
-
+  const now = new Date(Date.now() + 86400000).toISOString().split("T")[0];
   const [removedCurrentImage, setRemovedCurrentImage] = useState(false);
 
   const form = useForm<FormData>({
@@ -82,7 +82,7 @@ export default function EventForm({ mode, initialData }: EventFormProps) {
       name: initialData?.name ?? "",
       description: initialData?.description ?? "",
       location: initialData?.location ?? "",
-      eventDate: initialData ? new Date(initialData.eventDate) : new Date(),
+      eventDate: initialData ? new Date(initialData.eventDate) : new Date(now),
       price: initialData?.price ?? 0,
       totalTickets: initialData?.totalTickets ?? 1,
     },
@@ -261,8 +261,9 @@ export default function EventForm({ mode, initialData }: EventFormProps) {
                     value={
                       field.value
                         ? new Date(field.value).toISOString().split("T")[0]
-                        : ""
+                        : now
                     }
+                    min={now}
                   />
                 </FormControl>
                 <FormMessage />

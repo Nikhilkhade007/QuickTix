@@ -4,15 +4,14 @@ import { useQuery } from 'convex/react'
 import { CalendarDays, Ticket } from 'lucide-react'
 import React from 'react'
 import EventCard from './EventCard'
+import Spinner from './Spinner'
 function EventList() {
     const events = useQuery(api.events.get)
     const upcomingEvents = events?.filter(event=> event.eventDate > Date.now()).sort((a,b)=> a.eventDate - b.eventDate)
     const pastEvents = events?.filter(event=> event.eventDate <= Date.now()).sort((a,b)=> b.eventDate - a.eventDate)
     if (!events){
         return (
-            <div>
-                Loading....
-            </div>
+            <Spinner/>
         )
     }
   return (

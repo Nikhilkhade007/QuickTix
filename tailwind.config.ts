@@ -55,8 +55,12 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  clipPath: {
+			'custom-polygon': 'polygon(0 0, 100% 0, 0 100%, 0 50%)',
+		  },
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),require('tailwind-clip-path'),],
+  
 } satisfies Config;
