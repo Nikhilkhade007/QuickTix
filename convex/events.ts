@@ -222,7 +222,13 @@ export const joinWaitingList = mutation({
         
     }
 })
-
+export const cancelEvent = mutation({
+  args:{
+    eventId :v.id("events")
+  },handler: async(ctx,{eventId})=>{
+    await ctx.db.patch(eventId,{is_cancelled:true})
+  }
+})
 export const getAvailableEvent = query({
     args:{
         eventId:v.id("events")
@@ -315,3 +321,21 @@ export const getUserTickets = query({
       return ticketsWithEvents;
     },
   });
+
+
+  export const search = query({
+    args:{
+      searchParam:v.string()
+    },handler :async(ctx,{searchParam})=>{
+      const events = await ctx.db.query("events").filter(e=>e.eq(e.field("is_cancelled"),undefined)).collect();
+
+      return events.filter(event=>{
+        const searchParamLower = searchParam.toLowerCase();
+        return (
+          event.name.toLowerCase().includes(searchParamLower)||
+          event.location.toLowerCase().includes(searchParamLower)||
+          event.description.toLowerCase().includes(searchParamLower)
+        )
+      })
+    }
+  })

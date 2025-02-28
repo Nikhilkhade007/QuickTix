@@ -25,3 +25,27 @@ export const getTicketWithDetails = query({
       };
     },
   });
+
+
+export const getAllValidTickets = query({
+  args:{
+    eventId: v.id("events")
+  },handler: async (ctx,{eventId})=>{
+    const events = await ctx.db.query("tickets").withIndex("by_event",q=> q.eq("eventId",eventId)).filter(q=>q.or(q.eq(q.field("status"),"valid"),q.eq(q.field("status"),"used"))).collect()
+    return events;
+  }
+})
+
+export const updateTicket = mutation({
+  args:{
+    ticketId: v.id("tickets"),
+    status: v.union(
+      v.literal("valid"),
+      v.literal("used"),
+      v.literal("refunded"),
+      v.literal("cancelled")
+    )
+  },handler:async (ctx,{ticketId,status})=>{
+    await ctx.db.patch(ticketId,{status})
+  }
+})

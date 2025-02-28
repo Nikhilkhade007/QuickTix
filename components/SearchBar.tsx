@@ -1,8 +1,10 @@
 "use client";
 
-import { Search } from "lucide-react";
+import {  SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 export default function SearchBar() {
   const router = useRouter();
@@ -16,22 +18,15 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <form onSubmit={handleSearch} className="relative">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for events, artists, team and more"
-          className="w-full text-sm py-3 px-4 pl-12 bg-white rounded-xl border border-gray-200 shadow-sm focus:outline-none "
-        />
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-        <button
-          type="submit"
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors duration-200"
-        >
-          Search
-        </button>
+    <div className="max-w-4xl  mx-auto">
+      <form onSubmit={handleSearch} className="relative flex gap-2 items-center justify-center">
+      <div className="relative flex-grow">
+              <Input placeholder="Search for the event" value={query} onChange={e=>setQuery(e.target.value)}/>
+              <SearchIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            </div>
+            <Button onClick={handleSearch} type='submit' size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
+              Search
+            </Button >
       </form>
     </div>
   );

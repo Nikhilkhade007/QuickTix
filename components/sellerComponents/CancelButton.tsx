@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { Ban } from "lucide-react";
-// import { refundEventTickets } from "@/app/actions/refundEventTickets";
+import {refundEventTickets} from "@/actions/refundEventTickets"
 import { Id } from "@/convex/_generated/dataModel";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Button } from "../ui/button";
 
@@ -24,7 +22,7 @@ export default function CancelEventButton({
   const handleCancel = async () => {
     setIsCancelling(true);
     try {
-    //   await refundEventTickets(eventId);
+      await refundEventTickets(eventId);
     //   await cancelEvent({ eventId });
       toast({
         title: "Event cancelled",
@@ -62,7 +60,7 @@ export default function CancelEventButton({
                 <Button variant={"destructive"}  onClick={handleCancel} disabled={isCancelling}>
                     Yes
                 </Button>
-                <DialogClose>
+                <DialogClose asChild>
                     <Button>
                         Close
                     </Button>

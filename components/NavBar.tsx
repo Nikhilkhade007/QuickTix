@@ -5,14 +5,11 @@ import Link from 'next/link'
 
 function NavBar() {
   return (
-    <Menubar className='hidden sm:flex'>
+    <Menubar className='hidden md:flex'>
       <MenubarMenu >
         <MenubarTrigger>
           <Link href={"/seller"}>Sell</Link>
         </MenubarTrigger>
-      </MenubarMenu>
-      <MenubarMenu>
-        <MenubarTrigger>Favorites</MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>

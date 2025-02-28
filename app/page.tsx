@@ -3,7 +3,7 @@ import EventList from "@/components/EventList";
 
 export default function Home() {
   return (
-    <div>
+    <div className="mt-6 sm:mt-0">
       <Carousel/>
       <EventList/>
     </div>

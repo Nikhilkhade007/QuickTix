@@ -30,7 +30,7 @@ export default function Carousel() {
   }, [nextSlide]);
 
   return (
-    <div className="relative max-w-7xl mx-auto px-4 pt-14 h-[350px] md:h-[500px]">
+    <div className="relative max-w-7xl mx-auto px-4 pt-14 h-[350px] md:h-[300px] lg:h-[500px]">
       <div className="overflow-hidden rounded-3xl shadow-lg h-full">
         <div
           className="flex transition-transform duration-500 ease-in-out h-full"
@@ -59,7 +59,7 @@ export default function Carousel() {
       >
         <ChevronRight className="h-4 w-4" />
       </Button> */}
-      <div className="absolute bottom-14 left-12">
+      <div className="absolute bottom-5 right-8 md:right-[79%]">
         <div className="flex items-center justify-center gap-4">
           {events?.map((_, index) => (
             <button
@@ -95,11 +95,11 @@ const CarouselCard = ({ event }:{event:any}) => {
           <span className="text-red-600 font-semibold">Image not available</span>
         </div>
       )}
-      <div className="md:w-[40%] w-full absolute  md:left-0 bg-[#00481a] text-white md:h-full h-[30%] bottom-0 flex flex-col justify-center px-4">
-        <h3 className="text-2xl font-semibold mt-4">{event.name}</h3>
+      <div className="md:w-[40%] w-full absolute  md:left-0 bg-[#00481a] text-white md:h-full h-[40%] bottom-0 flex flex-col justify-center px-4">
+        <h3 className="text-2xl lg:text-4xl font-semibold mt-4">{event.name}</h3>
         <p className="text-gray-600 text-center mt-2">{event.shortDescription}</p>
         <Link href={`/event/${event._id}`} passHref>
-          <Button variant={"outline"} className="mt-4 font-semibold border-[#6fb229] bg-transparent text-[#6fb229] hover:bg-[#4e7c05] hover:text-[#6fb229]">View Event</Button>
+          <Button variant={"outline"} className="md:mt-4 font-semibold border-[#6fb229] bg-transparent text-[#6fb229] hover:bg-[#4e7c05] hover:text-[#6fb229]">View Event</Button>
         </Link>
       </div>
     </div>
