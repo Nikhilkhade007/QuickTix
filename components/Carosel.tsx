@@ -1,13 +1,26 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useStorageUrl } from "@/lib/utils";
 import Link from "next/link"; 
+import { Id } from "@/convex/_generated/dataModel"; // Adjust the import based on your project structure
 
+interface Event {
+  _id: Id<"events">;
+  _creationTime: number;
+  imageStorageId?: Id<"_storage">;
+  is_cancelled?: boolean;
+  name: string;
+  description: string;
+  location: string;
+  eventDate: number;
+  price: number;
+  totalTickets: number;
+  userId: string;
+}
 export default function Carousel() {
     const currentDate =new Date();
   const AllEvents = useQuery(api.events.get);
@@ -41,24 +54,6 @@ export default function Carousel() {
           ))}
         </div>
       </div>
-      {/* <Button
-        variant="outline"
-        size="icon"
-        className="absolute top-1/2 left-6 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-        onClick={prevSlide}
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute top-1/2 right-6 transform -translate-y-1/2 bg-white/80 hover:bg-white"
-        onClick={nextSlide}
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button> */}
       <div className="absolute bottom-5 right-8 md:right-[79%]">
         <div className="flex items-center justify-center gap-4">
           {events?.map((_, index) => (
@@ -73,11 +68,16 @@ export default function Carousel() {
           ))}
         </div>
       </div>
+      <div className="hidden absolute top-1/2 left-4 transform -translate-y-1/2">
+        <button onClick={prevSlide} aria-label="Previous Slide" className="bg-white p-2 rounded-full shadow">
+          &lt;Back
+        </button>
+      </div>
     </div>
   );
 }
 
-const CarouselCard = ({ event }:{event:any}) => {
+const CarouselCard = ({ event }: { event: Event  })=> {
   const imageUrl = useStorageUrl(event?.imageStorageId);
   return (
     <div className="w-full relative flex-shrink-0 flex flex-row-reverse items-center h-full">
@@ -97,7 +97,7 @@ const CarouselCard = ({ event }:{event:any}) => {
       )}
       <div className="md:w-[40%] w-full absolute  md:left-0 bg-[#00481a] text-white md:h-full h-[40%] bottom-0 flex flex-col justify-center px-4">
         <h3 className="text-2xl lg:text-4xl font-semibold mt-4">{event.name}</h3>
-        <p className="text-gray-600 text-center mt-2">{event.shortDescription}</p>
+        <p className="hidden lg:block mt-2">{event.description.length > 150 ? event.description.slice(0,150) + "....":event.description}</p>
         <Link href={`/event/${event._id}`} passHref>
           <Button variant={"outline"} className="md:mt-4 font-semibold border-[#6fb229] bg-transparent text-[#6fb229] hover:bg-[#4e7c05] hover:text-[#6fb229]">View Event</Button>
         </Link>
