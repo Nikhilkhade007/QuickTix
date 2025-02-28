@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarMenu, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from './ui/menubar'
+import { Menubar,MenubarMenu,  MenubarTrigger } from './ui/menubar'
 import Link from 'next/link'
 
 function NavBar() {

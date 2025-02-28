@@ -1,7 +1,7 @@
 "use client";
 import { useUser  } from "@clerk/nextjs";
 import React from "react";
-import { CalendarDays, Cog, Plus } from "lucide-react";
+import { CalendarDays, Plus } from "lucide-react";
 import Link from "next/link";
 import Spinner from "../Spinner";
 import { useQuery } from "convex/react";
