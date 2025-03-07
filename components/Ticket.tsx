@@ -60,7 +60,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<"tickets"> }) {
 
       {/* Ticket Content */}
       <div className="p-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="flex items-center justify-center flex-col md:flex-row  gap-6">
           {/* Left Column - Event Details */}
           <div className="space-y-4">
             <div className="flex items-center text-gray-600">
@@ -152,7 +152,7 @@ export default function Ticket({ ticketId }: { ticketId: Id<"tickets"> }) {
 
       {/* Ticket Footer */}
       <div
-        className={`${ticket.event.is_cancelled ? "bg-red-50" : "bg-gray-50"} px-6 py-4 flex justify-between items-center`}
+        className={`${ticket.event.is_cancelled ? "bg-red-50" : "bg-gray-50"} px-6 py-4 flex justify-between gap-2 items-center`}
       >
         <span className="text-sm text-gray-500">
           Purchase Date: {new Date(ticket.purchasedAt).toLocaleString()}

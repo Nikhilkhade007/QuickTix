@@ -49,7 +49,7 @@ export default function ReleaseTicket({
         <DialogDescription>
           If you release ticket then it will be allocated to the another user
         </DialogDescription>
-        <DialogFooter>
+        <DialogFooter className="flex flex-col gap-2">
           <Button onClick={handleRelease}
           disabled={isReleasing} type="submit" variant={"destructive"}>
             Confirm

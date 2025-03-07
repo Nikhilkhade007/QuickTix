@@ -75,11 +75,11 @@ export default function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
   }
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-amber-200">
+    <div className="bg-white p-2 md:p-6 rounded-xl shadow-lg border border-amber-200">
       <div className="space-y-4">
         <div className="bg-white rounded-lg p-6 border border-gray-200">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
                 <Ticket className="w-6 h-6 text-amber-600" />
               </div>

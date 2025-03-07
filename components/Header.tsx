@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import { SignedOut, UserButton, SignedIn, SignInButton } from '@clerk/nextjs';
 import SearchBar from './SearchBar';
 import Link from 'next/link';
+import MenuComponent from './Menu';
 
 function Header() {
   return (
@@ -23,6 +24,7 @@ function Header() {
         </div>
         <div className='flex gap-2 px-2'>
           <NavBar />
+            <MenuComponent/>
           <SignedIn>
             <UserButton />
           </SignedIn>
@@ -35,7 +37,7 @@ function Header() {
           </SignedOut>
         </div>
         </div>
-        <div className='sm:hidden mb-4 w-full px-2'>
+        <div className='sm:hidden mt-2 mb-4 w-full px-2'>
         <SearchBar/>
         </div>
       </div>

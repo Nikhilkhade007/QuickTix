@@ -76,7 +76,7 @@ function SellerEventCard({
       className={`bg-white rounded-lg shadow-sm border ${event.is_cancelled ? "border-red-200" : "border-gray-200"} overflow-hidden`}
     >
       <div className="p-6">
-        <div className="flex items-start gap-6">
+        <div className="flex flex-col sm:flex-row items-start gap-6">
           {/* Event Image */}
           {imageUrl && (
             <div className="relative w-40 h-40 rounded-lg overflow-hidden shrink-0">
@@ -91,7 +91,7 @@ function SellerEventCard({
 
           {/* Event Details */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col md:flex-row items-start justify-between gap-4">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">
                   {event.name}

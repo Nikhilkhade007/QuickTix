@@ -35,7 +35,7 @@ export default function SellerDashboard() {
             List your tickets for sale and manage your listings
           </p>
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/seller/new-event"
                 className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"

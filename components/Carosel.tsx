@@ -6,8 +6,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useStorageUrl } from "@/lib/utils";
 import Link from "next/link"; 
-import { Id } from "@/convex/_generated/dataModel"; // Adjust the import based on your project structure
-
+import { Id } from "@/convex/_generated/dataModel"; 
 interface Event {
   _id: Id<"events">;
   _creationTime: number;
@@ -88,7 +87,7 @@ const CarouselCard = ({ event }: { event: Event  })=> {
           width={600}
           height={400}
 
-          className="w-full h-full object-fill"
+          className="w-full md:w-[60%] h-full object-fill"
         />
       ) : (
         <div className="md:w-[60%] w-full h-full bg-red-200 flex items-center justify-center">
