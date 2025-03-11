@@ -79,7 +79,7 @@ export default function Carousel() {
 const CarouselCard = ({ event }: { event: Event  })=> {
   const imageUrl = useStorageUrl(event?.imageStorageId);
   return (
-    <div className="w-full relative flex-shrink-0 flex flex-row-reverse items-center h-full">
+    <div className="w-full relative  flex-shrink-0 flex flex-col md:flex-row-reverse items-center h-full">
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -87,14 +87,14 @@ const CarouselCard = ({ event }: { event: Event  })=> {
           width={600}
           height={400}
 
-          className="w-full md:w-[60%] h-full object-fill"
+          className="w-full md:w-[60%] h-[60%] md:h-full object-fill"
         />
       ) : (
         <div className="md:w-[60%] w-full h-full bg-red-200 flex items-center justify-center">
           <span className="text-red-600 font-semibold">Image not available</span>
         </div>
       )}
-      <div className="md:w-[40%] w-full absolute  md:left-0 bg-[#00481a] text-white md:h-full h-[40%] bottom-0 flex flex-col justify-center px-4">
+      <div className="md:w-[40%] w-full md:absolute  md:left-0 bg-[#00481a] text-white md:h-full h-[40%] bottom-0 flex flex-col justify-center px-4">
         <h3 className="text-2xl lg:text-4xl font-semibold mt-4">{event.name}</h3>
         <p className="hidden lg:block mt-2">{event.description.length > 150 ? event.description.slice(0,150) + "....":event.description}</p>
         <Link href={`/event/${event._id}`} passHref>
